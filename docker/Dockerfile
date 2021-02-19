@@ -35,7 +35,7 @@ RUN cp /opt/nmapdashboard/nmapreport/docker/tzdata.sh /root/tzdata.sh
 RUN cp /opt/nmapdashboard/nmapreport/docker/startup.sh /startup.sh
 
 RUN cd /opt/nmapdashboard && python3 manage.py migrate
-RUN apt-get autoremove -y
+RUN apk cache clean
 RUN ln -s /opt/nmapdashboard/nmapreport/token.py /root/token
 RUN chmod +x /root/token
 

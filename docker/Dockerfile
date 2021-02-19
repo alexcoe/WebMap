@@ -16,12 +16,9 @@
 #
 # Now you can point your browser to http://localhost:8000
 
-FROM ubuntu:latest
+FROM alpine:latest
 
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update && apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-    python3 python3-pip curl wget git wkhtmltopdf libssl1 vim nmap tzdata
+RUN apk add --no-cache python3 py3-pip curl wget git wkhtmltopdf libssl1.1 vim nmap tzdata bash
 
 RUN mkdir /opt/xml && mkdir /opt/notes && \
     wget -P /opt/ https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
@@ -29,7 +26,7 @@ RUN mkdir /opt/xml && mkdir /opt/notes && \
 
 RUN pip3 install Django requests xmltodict && \
     cd /opt/ && django-admin startproject nmapdashboard && cd /opt/nmapdashboard && \
-    git clone https://github.com/SabyasachiRana/WebMap.git nmapreport && \
+    git clone https://github.com/alexcoe/WebMap.git nmapreport && \
     cd nmapreport && git checkout master
 
 RUN cp /opt/nmapdashboard/nmapreport/docker/settings.py /opt/nmapdashboard/nmapdashboard/

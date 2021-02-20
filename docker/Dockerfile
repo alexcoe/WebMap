@@ -39,6 +39,6 @@ RUN apk cache clean
 RUN ln -s /opt/nmapdashboard/nmapreport/token.py /root/token
 RUN chmod +x /root/token
 
-EXPOSE 8000
+EXPOSE 9191
 
 ENTRYPOINT ["bash", "/startup.sh"]

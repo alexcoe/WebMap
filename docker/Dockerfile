@@ -44,4 +44,4 @@ RUN apk del .build-deps
 
 EXPOSE 9191
 
-ENTRYPOINT ["bash", "/startup.sh"]
+ENTRYPOINT ["sh", "/startup.sh"]

@@ -117,7 +117,7 @@ def genPDF(request):
 		if os.path.exists('/opt/nmapdashboard/nmapreport/static/'+pdffile+'.pdf'):
 			os.remove('/opt/nmapdashboard/nmapreport/static/'+pdffile+'.pdf')
 
-		os.popen('/opt/wkhtmltox/bin/wkhtmltopdf --cookie sessionid '+request.session._session_key+' --enable-javascript --javascript-delay 6000 http://127.0.0.1:9191/view/pdf/ /opt/nmapdashboard/nmapreport/static/'+pdffile+'.pdf')
+		os.popen('/bin/wkhtmltopdf --cookie sessionid '+request.session._session_key+' --enable-javascript --javascript-delay 6000 http://127.0.0.1:9191/view/pdf/ /opt/nmapdashboard/nmapreport/static/'+pdffile+'.pdf')
 		res = {'ok':'PDF created', 'file':'/static/'+pdffile+'.pdf'}
 		return HttpResponse(json.dumps(res), content_type="application/json")
 
